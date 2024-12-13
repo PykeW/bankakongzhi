@@ -1,5 +1,8 @@
 # my-new-project
 
+## 访问地址
+http://106.14.28.97:3000
+
 ## Project setup
 ```
 npm install
@@ -22,3 +25,5 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
