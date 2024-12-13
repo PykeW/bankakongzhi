@@ -1,4 +1,7 @@
 {
+  "exclude": [
+    "src/components/AxisController.vue"
+  ],
   "compilerOptions": {
     "target": "es5",
     "module": "esnext",
@@ -15,5 +18,11 @@
       "dom.iterable",
       "scripthost"
     ]
-  }
+  },
+  "include": [
+    "src/**/*.js",
+    "src/**/*.ts",
+    "src/**/*.jsx",
+    "src/**/*.tsx"
+  ]
 }
