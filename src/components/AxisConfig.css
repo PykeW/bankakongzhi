@@ -1147,3 +1147,66 @@
     height: 10px;
   }
 }
+
+/* 底部状态栏样式 */
+.status-bar {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 8px 16px;
+  background: #363636;
+  margin-top: 16px;
+  border-top: 1px solid #404040;
+}
+
+/* 状态项样式 */
+.status-bar-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* 状态标签样式 */
+.status-bar-label {
+  font-size: 12px;
+  color: #8c8c8c;
+}
+
+/* 状态值样式 */
+.status-bar-value {
+  font-family: monospace;
+  font-size: 13px;
+  color: #00e3e3;
+  min-width: 60px;
+}
+
+/* 状态单位样式 */
+.status-bar-unit {
+  font-size: 12px;
+  color: #8c8c8c;
+}
+
+/* 响应式调整 */
+@media screen and (max-width: 1366px) {
+  .status-bar {
+    padding: 6px 12px;
+    gap: 16px;
+  }
+  
+  .status-bar-value {
+    font-size: 12px;
+    min-width: 50px;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .status-bar {
+    padding: 10px 24px;
+    gap: 32px;
+  }
+  
+  .status-bar-value {
+    font-size: 14px;
+    min-width: 70px;
+  }
+}

@@ -115,6 +115,24 @@ const AxisConfig = () => {
         </div>
 
         <TestParams />
+
+        <div className="status-bar">
+          <div className="status-bar-item">
+            <span className="status-bar-label">实时位置:</span>
+            <span className="status-bar-value">0.000</span>
+            <span className="status-bar-unit">mm</span>
+          </div>
+          <div className="status-bar-item">
+            <span className="status-bar-label">实时速度:</span>
+            <span className="status-bar-value">0.000</span>
+            <span className="status-bar-unit">mm/s</span>
+          </div>
+          <div className="status-bar-item">
+            <span className="status-bar-label">目标位置:</span>
+            <span className="status-bar-value">0.000</span>
+            <span className="status-bar-unit">mm</span>
+          </div>
+        </div>
       </Card>
     </div>
   );
