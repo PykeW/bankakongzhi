@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, Table, InputNumber, Checkbox, Button, Space } from 'antd';
 import { SaveOutlined, UndoOutlined, PlusOutlined, MinusOutlined } from '@ant-design/icons';
 import './AxisConfig.css';
 import TopNav from './TopNav';
+import TestParams from './TestParams';
 
 const AxisConfig = () => {
+  const [selectedAxisIndex, setSelectedAxisIndex] = useState(0);
+
   // 轴状态表格列定义
   const columns = [
     { 
@@ -59,6 +62,16 @@ const AxisConfig = () => {
     { key: 2, name: '取料旋转T', index: 2 },
   ];
 
+  // 表格行类名处理
+  const getRowClassName = (record) => {
+    return record.key === selectedAxisIndex ? 'selected' : '';
+  };
+
+  // 行点击处理
+  const onRowClick = (record) => {
+    setSelectedAxisIndex(record.key);
+  };
+
   return (
     <div className="axis-config">
       <TopNav />
@@ -70,6 +83,10 @@ const AxisConfig = () => {
             size="small"
             pagination={false}
             bordered
+            rowClassName={getRowClassName}
+            onRow={(record) => ({
+              onClick: () => onRowClick(record),
+            })}
           />
           <div className="table-actions">
             <Button type="text" icon={<PlusOutlined />} />
@@ -77,38 +94,15 @@ const AxisConfig = () => {
           </div>
         </div>
         
-        <div className="motion-test">测试参数</div>
-        
-        <div className="params-section">
-          <div className="param-item">
-            <span>距离(毫米):</span>
-            <InputNumber value={1000} />
-          </div>
-          <div className="param-item">
-            <span>最大速度(毫米/秒):</span>
-            <InputNumber value={5000} />
-          </div>
-          <div className="param-item">
-            <span>加速度(毫米/秒²):</span>
-            <InputNumber value={50000} />
-          </div>
-          <div className="param-item">
-            <span>减速度(毫米/秒²):</span>
-            <InputNumber value={50000} />
-          </div>
-          {/* 添加其他参数项 */}
-        </div>
-
         <div className="motion-test">运动测试</div>
         
         <div className="control-buttons">
           <Space>
-            <Button type="primary">连续+</Button>
+            <Button>连续+</Button>
             <Button>相对定长+</Button>
             <Button>绝对定长+</Button>
             <Button>往复运动</Button>
             <Button>规划位置清零</Button>
-            <Button danger>停止</Button>
           </Space>
           <Space>
             <Button>连续-</Button>
@@ -116,9 +110,11 @@ const AxisConfig = () => {
             <Button>绝对定长-</Button>
             <Button>回零</Button>
             <Button>实际位置清零</Button>
-            <Button>使能</Button>
           </Space>
+          <button className="emergency-stop">急停</button>
         </div>
+
+        <TestParams />
       </Card>
     </div>
   );
