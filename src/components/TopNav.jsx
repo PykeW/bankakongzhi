@@ -14,12 +14,15 @@ import './TopNav.css';
 const TopNav = () => {
   return (
     <div className="top-nav">
-      <div className="left">
-        <SettingOutlined className="icon" /> 
-        参数配置室
-        <ArrowRightOutlined style={{ marginLeft: 'auto' }} />
+      <div className="header">
+        <div className="title">
+          <SettingOutlined className="icon" /> 
+          参数配置
+        </div>
+        <ArrowRightOutlined className="exit-arrow" />
       </div>
-      <div className="right">
+      
+      <div className="function-nav">
         <div className="nav-item active">
           <ColumnHeightOutlined className="icon" />
           轴

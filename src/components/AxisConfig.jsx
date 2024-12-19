@@ -9,36 +9,46 @@ const AxisConfig = () => {
   const columns = [
     { 
       title: '轴名称', 
-      dataIndex: 'name', 
+      dataIndex: 'name',
       width: 120,
-      className: 'column-name'
     },
     { 
       title: '序号', 
-      dataIndex: 'index', 
+      dataIndex: 'index',
       width: 80,
-      className: 'column-index'
     },
-    { 
+    {
       title: '轴状态',
-      children: [
-        { 
-          title: '使能', 
-          dataIndex: 'enabled', 
-          render: () => <Checkbox />,
-          className: 'column-status'
-        },
-        { 
-          title: '运动', 
-          dataIndex: 'moving', 
-          render: () => <div className="status-dot moving" />,
-          className: 'column-status'
-        },
-        { title: '报警', dataIndex: 'alarm', render: () => <div className="status-dot alarm" /> },
-        { title: '正限位', dataIndex: 'posLimit', render: () => <div className="status-dot" /> },
-        { title: '负限位', dataIndex: 'negLimit', render: () => <div className="status-dot" /> },
-        { title: '零位', dataIndex: 'zero', render: () => <div className="status-dot" /> },
-      ]
+      dataIndex: 'status',
+      className: 'status-column',
+      render: () => (
+        <div className="status-group">
+          <div className="status-item">
+            <div className="status-label">使能</div>
+            <Checkbox />
+          </div>
+          <div className="status-item">
+            <div className="status-label">运动</div>
+            <div className="status-dot moving" />
+          </div>
+          <div className="status-item">
+            <div className="status-label">报警</div>
+            <div className="status-dot alarm" />
+          </div>
+          <div className="status-item">
+            <div className="status-label">正限位</div>
+            <div className="status-dot" />
+          </div>
+          <div className="status-item">
+            <div className="status-label">负限位</div>
+            <div className="status-dot" />
+          </div>
+          <div className="status-item">
+            <div className="status-label">零位</div>
+            <div className="status-dot" />
+          </div>
+        </div>
+      )
     }
   ];
 
@@ -53,13 +63,19 @@ const AxisConfig = () => {
     <div className="axis-config">
       <TopNav />
       <Card bordered={false}>
-        <Table 
-          columns={columns} 
-          dataSource={axisData}
-          size="small"
-          pagination={false}
-          bordered
-        />
+        <div className="table-header">
+          <Table 
+            columns={columns} 
+            dataSource={axisData}
+            size="small"
+            pagination={false}
+            bordered
+          />
+          <div className="table-actions">
+            <Button type="text" icon={<PlusOutlined />} />
+            <Button type="text" icon={<MinusOutlined />} />
+          </div>
+        </div>
         
         <div className="motion-test">测试参数</div>
         
