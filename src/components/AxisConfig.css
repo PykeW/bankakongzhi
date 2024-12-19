@@ -1,0 +1,189 @@
+.axis-config {
+  padding: 0;
+  background: #2b2b2b;
+  min-height: 100vh;
+  color: #fff;
+}
+
+.axis-config .ant-card {
+  background: #2b2b2b;
+  border: none;
+}
+
+.axis-config .ant-card-body {
+  padding: 0;
+}
+
+.axis-config .ant-table {
+  background: transparent;
+  color: #fff;
+}
+
+.axis-config .ant-table-thead > tr > th {
+  background: #008B8B !important;
+  color: #fff !important;
+  border: none !important;
+  padding: 8px 16px;
+  font-weight: normal;
+  border-right: 1px solid #404040 !important;
+}
+
+.axis-config .ant-table-tbody > tr > td {
+  background: #4d4d4d !important;
+  border: none !important;
+  padding: 8px 16px;
+  color: #fff;
+  border-right: 1px solid #404040 !important;
+  border-bottom: 1px solid #404040 !important;
+}
+
+.axis-config .ant-table-tbody > tr:nth-child(odd) > td {
+  background: #404040 !important;
+}
+
+.status-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #52c41a;
+  margin: 0 auto;
+}
+
+.status-dot.moving {
+  background-color: #f5222d;
+}
+
+.status-dot.alarm {
+  background-color: #52c41a;
+}
+
+.params-section {
+  margin: 20px 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  background: transparent;
+  padding: 0;
+}
+
+.param-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  background: #404040;
+  border-bottom: 1px solid #2b2b2b;
+}
+
+.param-item:nth-child(odd) {
+  background: #363636;
+}
+
+.param-item span {
+  min-width: 150px;
+  text-align: right;
+  color: #fff;
+}
+
+.axis-config .ant-input-number {
+  width: 100%;
+  background: #2b2b2b;
+  border: none;
+}
+
+.axis-config .ant-input-number-handler-wrap {
+  background: #363636;
+}
+
+.motion-test {
+  margin-top: 20px;
+  background: #008B8B;
+  padding: 8px 16px;
+  color: white;
+  font-weight: bold;
+}
+
+.control-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 20px 0;
+  background: transparent;
+  padding: 0;
+  margin-top: 0;
+}
+
+.control-buttons .ant-space {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1px;
+  background: #2b2b2b;
+}
+
+.control-buttons .ant-btn {
+  width: 100%;
+  background: #404040;
+  border-color: #008080;
+  color: #fff;
+  border-radius: 0;
+  height: 40px;
+  border: none;
+}
+
+.control-buttons .ant-btn:hover {
+  background: #4a4a4a;
+}
+
+.control-buttons .ant-btn-primary {
+  background: #008B8B;
+}
+
+.control-buttons .ant-btn-primary:hover {
+  background: #009B9B;
+}
+
+.control-buttons .ant-btn-dangerous {
+  background: #ff4d4f;
+  border-color: #ff4d4f;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #4d4d4d;
+  color: #fff;
+}
+
+.axis-config .ant-checkbox-wrapper {
+  color: #fff;
+}
+
+.axis-config .ant-checkbox-inner {
+  background-color: transparent;
+  border-color: #008B8B;
+}
+
+.axis-config .ant-checkbox-checked .ant-checkbox-inner {
+  background-color: #008080;
+  border-color: #008080;
+}
+
+.table-actions {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+}
+
+.table-actions .ant-btn {
+  color: #fff;
+  border: none;
+  padding: 4px 8px;
+  height: auto;
+  font-size: 12px;
+}
+
+.table-actions .ant-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+} 

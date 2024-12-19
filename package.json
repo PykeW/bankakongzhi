@@ -1,67 +1,21 @@
 {
-  "name": "my-new-project",
-  "version": "0.1.0",
+  "name": "bankakongzhi",
   "private": true,
+  "version": "1.0.0",
+  "type": "module",
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "eslint --ext .js,.vue src"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "@babel/plugin-transform-class-properties": "^7.25.9",
-    "@eslint/config-array": "^0.19.1",
-    "@eslint/object-schema": "^2.1.5",
-    "consolidate": "^1.0.4",
-    "core-js": "^3.33.0",
-    "glob": "^11.0.0",
-    "pinia": "^2.1.7",
-    "rimraf": "^6.0.1",
-    "vue": "^3.3.9",
-    "vue-router": "^4.2.5"
+    "@ant-design/icons": "^5.5.2",
+    "antd": "^5.22.5",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.26.0",
-    "@babel/eslint-parser": "^7.25.9",
-    "@typescript-eslint/eslint-plugin": "^8.18.0",
-    "@typescript-eslint/parser": "^8.18.0",
-    "@vue/cli-plugin-babel": "~5.0.8",
-    "@vue/cli-plugin-eslint": "~5.0.8",
-    "@vue/cli-service": "~5.0.8",
-    "eslint": "^8.57.1",
-    "eslint-plugin-vue": "^9.32.0",
-    "sass": "^1.69.5",
-    "sass-loader": "^13.0.0"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true,
-      "vue/setup-compiler-macros": true
-    },
-    "extends": [
-      "plugin:vue/vue3-essential",
-      "eslint:recommended"
-    ],
-    "parser": "vue-eslint-parser",
-    "parserOptions": {
-      "parser": "@babel/eslint-parser",
-      "ecmaVersion": 2020,
-      "sourceType": "module"
-    },
-    "rules": {
-      "vue/multi-word-component-names": "off"
-    },
-    "globals": {
-      "defineProps": "readonly",
-      "defineEmits": "readonly",
-      "defineExpose": "readonly",
-      "withDefaults": "readonly"
-    }
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead",
-    "not ie 11"
-  ]
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^4.5.5"
+  }
 }
