@@ -18,14 +18,14 @@ const SpeedConfig = () => {
   ]);
 
   const [delayData, setDelayData] = useState([
-    { key: '1', name: '换向延时', value: 0 },
+    { key: '1', name: '换行延时', value: 0 },
     { key: '2', name: '换列延时', value: 0 },
-    { key: '3', name: '群控延时', value: 0 },
-    { key: '4', name: '对准延时', value: 0 },
-    { key: '5', name: '指定位延时', value: 0 },
-    { key: '6', name: 'PR前后偏差显示延时', value: 0 },
-    { key: '7', name: 'PR左右偏差显示延时', value: 0 },
-    { key: '8', name: '闭后偏差显示延时', value: 0 }
+    { key: '3', name: '群组延时', value: 0 },
+    { key: '4', name: '对点延时', value: 0 },
+    { key: '5', name: '精定位延时', value: 0 },
+    { key: '6', name: 'PR前图像显示延时', value: 0 },
+    { key: '7', name: 'PR后图像显示延时', value: 0 },
+    { key: '8', name: '固后图像显示延时', value: 0 }
   ]);
 
   const handleSpeedInputChange = (key, field, value) => {
@@ -122,21 +122,6 @@ const SpeedConfig = () => {
           className="delay-table"
         />
       </Card>
-      <div className="bottom-controls">
-        <div>
-          工位：
-          <Select defaultValue="取料" style={{ width: 120 }}>
-            <Option value="取料">取料</Option>
-            <Option value="放料">放料</Option>
-          </Select>
-        </div>
-        <div>
-          <Button type="primary" onClick={handleSave}>
-            保存
-          </Button>
-          <Button style={{ marginLeft: 8 }}>取消</Button>
-        </div>
-      </div>
     </div>
   );
 };

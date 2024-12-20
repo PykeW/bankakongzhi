@@ -74,61 +74,63 @@ const AxisConfig = () => {
   return (
     <div className="axis-config">
       <Card bordered={false}>
-        <div className="table-header">
-          <Table 
-            columns={columns} 
-            dataSource={axisData}
-            size="small"
-            pagination={false}
-            bordered
-            rowClassName={getRowClassName}
-            onRow={(record) => ({
-              onClick: () => onRowClick(record),
-            })}
-          />
-          <div className="table-actions">
-            <Button type="text" icon={<PlusOutlined />} />
-            <Button type="text" icon={<MinusOutlined />} />
+        <div className="axis-content">
+          <div className="table-header">
+            <Table 
+              columns={columns} 
+              dataSource={axisData}
+              size="small"
+              pagination={false}
+              bordered
+              rowClassName={getRowClassName}
+              onRow={(record) => ({
+                onClick: () => onRowClick(record),
+              })}
+            />
+            <div className="table-actions">
+              <Button type="text" icon={<PlusOutlined />} />
+              <Button type="text" icon={<MinusOutlined />} />
+            </div>
           </div>
-        </div>
-        
-        <div className="motion-test">运动测试</div>
-        
-        <div className="control-buttons">
-          <Space>
-            <Button>连续+</Button>
-            <Button>相对定长+</Button>
-            <Button>绝对定长+</Button>
-            <Button>往复运动</Button>
-            <Button>规划位置清零</Button>
-          </Space>
-          <Space>
-            <Button>连续-</Button>
-            <Button>相对定长-</Button>
-            <Button>绝对定长-</Button>
-            <Button>回零</Button>
-            <Button>实际位置清零</Button>
-          </Space>
-          <button className="emergency-stop">急停</button>
-        </div>
+          
+          <div className="motion-test">运动测试</div>
+          
+          <div className="control-buttons">
+            <Space>
+              <Button>连续+</Button>
+              <Button>相对定长+</Button>
+              <Button>绝对定长+</Button>
+              <Button>往复运动</Button>
+              <Button>规划位置清零</Button>
+            </Space>
+            <Space>
+              <Button>连续-</Button>
+              <Button>相对定长-</Button>
+              <Button>绝对定长-</Button>
+              <Button>回零</Button>
+              <Button>实际位置清零</Button>
+            </Space>
+            <button className="emergency-stop">急停</button>
+          </div>
 
-        <TestParams />
+          <TestParams />
 
-        <div className="status-bar">
-          <div className="status-bar-item">
-            <span className="status-bar-label">实时位置:</span>
-            <span className="status-bar-value">0.000</span>
-            <span className="status-bar-unit">mm</span>
-          </div>
-          <div className="status-bar-item">
-            <span className="status-bar-label">实时速度:</span>
-            <span className="status-bar-value">0.000</span>
-            <span className="status-bar-unit">mm/s</span>
-          </div>
-          <div className="status-bar-item">
-            <span className="status-bar-label">目标位置:</span>
-            <span className="status-bar-value">0.000</span>
-            <span className="status-bar-unit">mm</span>
+          <div className="status-bar">
+            <div className="status-bar-item">
+              <span className="status-bar-label">实时位置:</span>
+              <span className="status-bar-value">0.000</span>
+              <span className="status-bar-unit">mm</span>
+            </div>
+            <div className="status-bar-item">
+              <span className="status-bar-label">实时速度:</span>
+              <span className="status-bar-value">0.000</span>
+              <span className="status-bar-unit">mm/s</span>
+            </div>
+            <div className="status-bar-item">
+              <span className="status-bar-label">目标位置:</span>
+              <span className="status-bar-value">0.000</span>
+              <span className="status-bar-unit">mm</span>
+            </div>
           </div>
         </div>
       </Card>

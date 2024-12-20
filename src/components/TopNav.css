@@ -3,14 +3,18 @@
   flex-direction: column;
   background: #2b2b2b;
   color: white;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  height: 72px;
 }
 
 .top-nav .header {
   display: flex;
   align-items: center;
-  height: 40px;
-  background: #2d2d2d;
-  padding: 0 24px;
+  height: 36px;
+  padding: 0 16px;
   position: relative;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -31,19 +35,20 @@
 
 .function-nav {
   display: flex;
-  height: 40px;
+  height: 36px;
   background: #2b2b2b;
+  margin-top: 0;
 }
 
 .nav-item {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 24px;
-  gap: 8px;
+  padding: 0 16px;
+  gap: 4px;
   cursor: pointer;
   height: 100%;
-  min-width: 100px;
+  min-width: 80px;
   border-right: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.3s ease;
 }

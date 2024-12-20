@@ -26,6 +26,9 @@
 }
 
 .axis-config .ant-table-thead > tr > th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
   background: #008B8B !important;
   color: #fff !important;
   border: none !important;
@@ -38,8 +41,8 @@
 }
 
 .axis-config .ant-table-thead > tr > th:first-child {
-  padding-left: 24px;
-  text-align: left !important;
+  width: 150px;
+  text-align: center !important;
 }
 
 .axis-config .ant-table-thead > tr > th:nth-child(2) {
@@ -234,7 +237,7 @@
   padding: 0 16px;
 }
 
-/* 确保表格单元格内容居中 */
+/* 确保表格单元格内居中 */
 .axis-config .ant-table-tbody > tr > td {
   text-align: center !important;
 }
@@ -286,10 +289,12 @@
 /* 添加运动测试标题样式 */
 .motion-test {
   background: #008B8B;
-  padding: 6px 24px;
+  padding: 8px 16px;
   color: white;
   font-size: 14px;
-  margin-bottom: 1px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  height: 30px;
 }
 
 /* 停止按钮样式 */
@@ -961,10 +966,11 @@
 .test-params {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  padding: 8px;
+  gap: 16px;
+  padding: 16px;
   background: #363636;
-  margin-top: 8px;
+  border-radius: 4px;
+  height: 100%;
 }
 
 .param-item {
@@ -1209,4 +1215,22 @@
     font-size: 14px;
     min-width: 70px;
   }
+}
+
+.axis-content {
+  max-height: calc(100vh - 200px); /* 根据需要调整 */
+  overflow-y: auto;
+}
+
+.axis-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.axis-content::-webkit-scrollbar-thumb {
+  background-color: #00897B;
+  border-radius: 4px;
+}
+
+.axis-content::-webkit-scrollbar-track {
+  background-color: rgba(255, 255, 255, 0.1);
 }

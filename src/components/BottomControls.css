@@ -1,0 +1,15 @@
+.bottom-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background: rgba(43, 43, 43, 0.9);
+  border-top: 1px solid #00897B;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  height: 60px;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.2);
+}

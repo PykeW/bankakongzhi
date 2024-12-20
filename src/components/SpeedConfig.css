@@ -30,7 +30,7 @@ body {
   margin: 0 20px;
   flex-grow: 1;
   overflow-y: auto;
-  max-height: calc(100vh - 120px);
+  max-height: calc(100vh - 150px);
 }
 
 .speed-config .ant-card-body {
