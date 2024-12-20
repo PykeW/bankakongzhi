@@ -11,7 +11,7 @@ import {
 } from '@ant-design/icons';
 import './TopNav.css';
 
-const TopNav = () => {
+const TopNav = ({ currentView, onViewChange }) => {
   return (
     <div className="top-nav">
       <div className="header">
@@ -23,11 +23,17 @@ const TopNav = () => {
       </div>
       
       <div className="function-nav">
-        <div className="nav-item active">
+        <div 
+          className={`nav-item ${currentView === 'axis' ? 'active' : ''}`}
+          onClick={() => onViewChange('axis')}
+        >
           <ColumnHeightOutlined className="icon" />
           轴
         </div>
-        <div className="nav-item">
+        <div 
+          className={`nav-item ${currentView === 'speed' ? 'active' : ''}`}
+          onClick={() => onViewChange('speed')}
+        >
           <ThunderboltOutlined className="icon" />
           速度
         </div>

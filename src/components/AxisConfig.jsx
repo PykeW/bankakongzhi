@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Card, Table, InputNumber, Checkbox, Button, Space } from 'antd';
 import { SaveOutlined, UndoOutlined, PlusOutlined, MinusOutlined } from '@ant-design/icons';
 import './AxisConfig.css';
-import TopNav from './TopNav';
 import TestParams from './TestParams';
 
 const AxisConfig = () => {
@@ -74,7 +73,6 @@ const AxisConfig = () => {
 
   return (
     <div className="axis-config">
-      <TopNav />
       <Card bordered={false}>
         <div className="table-header">
           <Table 
