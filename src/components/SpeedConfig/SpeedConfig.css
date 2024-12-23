@@ -47,7 +47,7 @@ body {
 }
 
 .speed-config .ant-table-thead > tr > th {
-  background: rgba(0, 137, 123, 0.8);
+  background: #008B8B;
   color: #fff;
   border: none;
   padding: 8px 16px;

@@ -1,134 +1,343 @@
 .vision-config {
-    padding: 8px 16px;
-    background: #2b2b2b;
-  }
-  
-  /* 参数配置区域 */
+  padding: 6px 12px;
+  background: #2b2b2b;
+}
+
+/* 模板表格区域 */
+.template-section {
+  margin-bottom: 1px;
+  position: relative;
+  width: 100%;
+}
+
+/* 加减按钮容器 */
+.template-actions {
+  position: absolute;
+  right: 16px;
+  top: 6px;
+  z-index: 1;
+  display: flex;
+  gap: 8px;
+}
+
+.template-actions .ant-btn {
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: #fff;
+}
+
+.template-actions .ant-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* 表格样式优化 */
+.vision-config .ant-table {
+  background: transparent;
+  margin-bottom: 1px;
+}
+
+.vision-config .ant-table-thead > tr > th {
+  background: #008B8B !important;
+  color: #fff !important;
+  border: none !important;
+  height: 32px;
+  padding: 4px 16px;
+  font-size: 13px;
+}
+
+.vision-config .ant-table-tbody > tr > td {
+  background: #404040 !important;
+  border: none !important;
+  padding: 6px 16px;
+  height: 32px;
+  font-size: 13px;
+  line-height: 20px;
+  vertical-align: middle;
+}
+
+/* 调整序号列宽度 */
+.vision-config .ant-table-thead > tr > th:first-child,
+.vision-config .ant-table-tbody > tr > td:first-child {
+  width: 80px;
+  padding-right: 8px;
+}
+
+/* 调整模板名称列宽度 */
+.vision-config .ant-table-thead > tr > th:nth-child(2),
+.vision-config .ant-table-tbody > tr > td:nth-child(2) {
+  width: 200px;
+}
+
+/* 相机选择下拉框样式 */
+.camera-select {
+  width: 160px !important;
+  margin: 0 !important;
+}
+
+.vision-config .ant-select-selector {
+  background: #404040 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  height: 20px !important;
+  min-height: 20px !important;
+  padding: 0 8px !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.vision-config .ant-select-selection-item {
+  color: #fff !important;
+  line-height: 20px !important;
+  font-size: 13px !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* 参数配置区域 */
+.params-section {
+  display: grid;
+  gap: 1px;
+  background: #2b2b2b;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media screen and (max-width: 1365px) {
   .params-section {
-    display: flex;
-    flex-direction: column;
-    gap: 1px;
-    background: #2b2b2b;
+    grid-template-columns: 1fr;
   }
-  
-  .params-group {
-    background: #404040;
-    padding: 0;
-    margin-bottom: 1px;
+}
+
+.params-group {
+  background: #404040;
+  padding: 0;
+  margin-bottom: 1px;
+}
+
+.group-title {
+  color: #fff;
+  font-size: 12px;
+  padding: 3px 10px;
+  background: #008B8B;
+  border: none;
+  margin: 0;
+}
+
+/* 参数项基础样式 
+ * 每个参数项都是一个flex容器，用于水平排列标签和输入框/下拉框
+ * height: 22px - 确保每行高度统一
+ * padding: 2px 10px - 提供适当的水平内边距，同时保持垂直方向紧凑
+ */
+.param-item {
+  display: flex;
+  align-items: center;  /* 确保子元素垂直居中 */
+  height: 22px;        /* 固定行高 */
+  padding: 2px 10px;   /* 水平内边距 */
+  margin: 0;           /* 移除外边距 */
+  background: #404040; /* 深色背景 */
+  border-bottom: 1px solid #363636;  /* 分隔线 */
+  text-align: left;    /* 文本左对齐 */
+  position: relative;  /* 为绝对定位的子元素提供参考 */
+}
+
+/* 参数标签样式
+ * width: 140px - 确保所有标签宽度一致
+ * flex: none - 防止标签被压缩
+ */
+.param-label {
+  color: #fff;
+  font-size: 12px;
+  width: 140px;
+  flex: none;
+}
+
+/* 输入框和下拉框的共同样式
+ * width: 60px - 统一宽度
+ * margin-left: 10px - 与标签保持间距
+ */
+.param-input,
+.method-select {
+  width: 60px !important;
+  margin-left: 10px;
+}
+
+/* 方法选择下拉框特定样式 */
+.method-select {
+  width: 60px !important;
+}
+
+/* 下拉框容器样式 */
+.vision-config .ant-select-selector {
+  background: #404040 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  height: 20px !important;        /* 与文字行高匹配 */
+  min-height: 20px !important;    /* 防止被antd默认值覆盖 */
+  padding: 0 8px !important;      /* 移除多余内边距 */
+  box-sizing: border-box !important;  /* 确保padding计入总高度 */
+}
+
+/* 下拉框文字样式 */
+.vision-config .ant-select-selection-item {
+  color: #fff !important;
+  line-height: 20px !important;   /* 与容器高度匹配 */
+  font-size: 13px !important;
+  padding: 0 !important;          /* 移除内边距 */
+  margin: 0 !important;           /* 移除外边距 */
+}
+
+/* 下拉框外层容器 */
+.vision-config .ant-select {
+  height: 20px !important;        /* 限制外层容器高度 */
+  line-height: 20px !important;   /* 确保行高一致 */
+}
+
+/* 下拉框展开后的样式
+ * 控制下拉选项的外观
+ */
+.vision-config .ant-select-dropdown {
+  background: #404040;
+  border-radius: 0;
+}
+
+/* 下拉选项样式
+ * height: 24px - 使选项容易点击
+ * padding: 4px 8px - 提供合适的内边距
+ */
+.vision-config .ant-select-item {
+  color: #fff;
+  padding: 4px 8px;
+  height: 24px;
+  line-height: 24px;
+}
+
+/* 下拉选项选中状态 */
+.vision-config .ant-select-item-option-selected {
+  background: #008B8B !important;  /* 使用主题色 */
+}
+
+/* 下拉选项悬停状态 */
+.vision-config .ant-select-item-option-active {
+  background: #363636;  /* 稍微亮一点的背景色 */
+}
+
+/* 输入框样式 */
+.vision-config .ant-input-number {
+  background: #404040;
+  border: none;
+  border-radius: 0;
+  height: 20px;
+  line-height: 20px;
+}
+
+.vision-config .ant-input-number-handler-wrap {
+  display: none;
+}
+
+.vision-config .ant-input-number-input {
+  color: #fff;
+  height: 20px;
+  padding: 0 4px;
+  font-size: 12px;
+}
+
+/* Switch 开关样式
+ * transform: scale(0.8) - 缩小开关尺寸
+ * position: absolute - 使用绝对定位确保对齐
+ * left: 150px - 与输入框对齐
+ */
+.vision-config .ant-switch {
+  background: #9c9c9c;
+  margin: 0;
+  position: absolute;
+  left: 168px; /* 调整开关位置，与输入框对齐 */
+  transform: scale(0.8);
+  min-width: 36px;
+  height: 18px;
+}
+
+/* Switch 开关的圆形按钮样式
+ * width/height: 14px - 调整按钮大小
+ */
+.vision-config .ant-switch-handle {
+  width: 14px;
+  height: 14px;
+}
+
+/* Switch 开关选中状态样式 */
+.vision-config .ant-switch-checked {
+  background: #008B8B;
+}
+
+/* 底部按钮 */
+.bottom-buttons {
+  display: flex;
+  gap: 6px;
+  margin-top: 12px;
+  justify-content: center;
+}
+
+.bottom-buttons .ant-btn {
+  min-width: 120px;
+  height: 28px;
+  background: #404040;
+  border: none;
+  color: #fff;
+  border-radius: 0;
+  font-size: 12px;
+  padding: 0 12px;
+}
+
+.bottom-buttons .ant-btn:hover {
+  background: #363636;
+}
+
+.vision-content {
+  max-height: calc(100vh - 140px);
+  overflow-y: auto;
+}
+
+.vision-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.vision-content::-webkit-scrollbar-thumb {
+  background-color: #00897B;
+  border-radius: 3px;
+}
+
+.vision-content::-webkit-scrollbar-track {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+@media screen and (min-width: 1366px) {
+  .params-section {
+      grid-template-columns: repeat(2, 1fr);
   }
-  
-  .group-title {
-    color: #fff;
-    font-size: 13px;
-    padding: 6px 16px;
-    background: #008B8B;
-    border: none;
-    margin: 0;
+}
+
+@media screen and (max-width: 1366px) {
+  .params-section {
+      grid-template-columns: 1fr;
   }
-  
-  .param-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 4px 16px;
-    background: #404040;
-    margin: 0;
-    border-bottom: 1px solid #363636;
-    height: 32px;
-  }
-  
-  .param-label {
-    color: #fff;
-    font-size: 13px;
-    flex: 1;
-  }
-  
-  .param-input {
-    width: 120px !important;
-  }
-  
-  /* 表格样式 */
-  .vision-config .ant-table {
-    background: transparent;
-    margin-bottom: 1px;
-  }
-  
-  .vision-config .ant-table-thead > tr > th {
-    background: #008B8B !important;
-    color: #fff !important;
-    border: none !important;
-    height: 32px;
-    padding: 4px 16px;
-    font-size: 13px;
-  }
-  
-  .vision-config .ant-table-tbody > tr > td {
-    background: #404040 !important;
-    border: none !important;
-    padding: 4px 16px;
-    height: 32px;
-  }
-  
-  .vision-config .ant-table-tbody > tr.selected-row > td {
-    background: #0f3e3e !important;
-  }
-  
-  .vision-config .ant-table-tbody > tr:hover > td {
-    background: #363636 !important;
-  }
-  
-  /* 输入框样式 */
-  .vision-config .ant-input-number {
-    background: #404040;
-    border: none;
-    border-radius: 0;
-  }
-  
-  .vision-config .ant-input-number-input {
-    color: #fff;
-  }
-  
-  /* Switch 样式 */
-  .vision-config .ant-switch {
-    background: #404040;
-  }
-  
-  .vision-config .ant-switch-checked {
-    background: #008B8B;
-  }
-  
-  /* Select 样式 */
-  .camera-select, .method-select {
-    width: 120px !important;
-  }
-  
-  .vision-config .ant-select-selector {
-    background: #404040 !important;
-    border: none !important;
-    border-radius: 0 !important;
-  }
-  
-  .vision-config .ant-select-selection-item {
-    color: #fff !important;
-  }
-  
-  /* 底部按钮 */
-  .bottom-buttons {
-    display: flex;
-    gap: 1px;
-    margin-top: 1px;
-    justify-content: center;
-  }
-  
-  .bottom-buttons .ant-btn {
-    min-width: 120px;
-    height: 32px;
-    background: #404040;
-    border: none;
-    color: #fff;
-    border-radius: 0;
-  }
-  
-  .bottom-buttons .ant-btn:hover {
-    background: #363636;
-  }
+}
+
+/* 表格行选中效果 */
+.vision-config .ant-table-tbody > tr.selected-row > td {
+  background: #0f3e3e !important;
+  color: #fff;
+  z-index: 1; /* 提高优先级 */
+}
+
+.vision-config .ant-table-tbody > tr:hover > td {
+  background: #363636 !important;
+}
+
+.vision-config .ant-table-tbody > tr.selected-row:hover > td {
+  background: #0f3e3e !important; /* 确保选中效果优先 */
+}

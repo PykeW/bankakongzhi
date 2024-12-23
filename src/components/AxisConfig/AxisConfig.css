@@ -873,7 +873,7 @@
   box-shadow: inset 0 0 20px rgba(0, 150, 142, 0.1);
 }
 
-/* 鼠标��停效果 */
+/* 鼠标悬停效果 */
 .axis-config .ant-table-tbody > tr:not(.selected):hover > td {
   background: #2a5959 !important;
   cursor: pointer;

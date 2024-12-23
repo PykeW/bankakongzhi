@@ -14,12 +14,19 @@ const VisionConfig = () => {
   ]);
 
   const columns = [
-    { title: '序号', dataIndex: 'key', width: 80 },
-    { title: '模板名称', dataIndex: 'name', width: 150 },
+    { 
+      title: '序号', 
+      dataIndex: 'key', 
+      width: 80,
+      className: 'column-center' 
+    },
+    { 
+      title: '模板名称', 
+      dataIndex: 'name'
+    },
     { 
       title: '相机', 
       dataIndex: 'camera',
-      width: 200,
       render: (text) => (
         <Select defaultValue={text} className="camera-select">
           <Option value="取料相机">取料相机</Option>
@@ -77,101 +84,103 @@ const VisionConfig = () => {
   return (
     <div className="vision-config">
       <Card bordered={false}>
-        <div className="template-section">
-          <Table
-            columns={columns}
-            dataSource={templates}
-            pagination={false}
-            size="small"
-            rowClassName={(record) => record.key === selectedTemplate ? 'selected-row' : ''}
-            onRow={(record) => ({
-              onClick: () => setSelectedTemplate(record.key),
-            })}
-          />
-          <div className="template-actions">
-            <Button type="text" icon={<PlusOutlined />} onClick={handleAdd} />
-            <Button type="text" icon={<MinusOutlined />} onClick={handleDelete} />
+        <div className="vision-content">
+          <div className="template-section">
+            <div className="template-actions">
+              <Button type="text" icon={<PlusOutlined />} onClick={handleAdd} />
+              <Button type="text" icon={<MinusOutlined />} onClick={handleDelete} />
+            </div>
+            <Table
+              columns={columns}
+              dataSource={templates}
+              pagination={false}
+              size="small"
+              rowClassName={(record) => record.key === selectedTemplate ? 'selected-row' : ''}
+              onRow={(record) => ({
+                onClick: () => setSelectedTemplate(record.key),
+              })}
+            />
           </div>
-        </div>
 
-        <div className="params-section">
-          <div className="params-group">
-            <div className="group-title">相机参数</div>
-            {cameraParams.map(param => (
-              <div className="param-item" key={param.key}>
-                <span className="param-label">{param.label}</span>
-                <InputNumber className="param-input" value={param.value} />
+          <div className="params-section">
+            <div className="params-group">
+              <div className="group-title">相机参数</div>
+              {cameraParams.map(param => (
+                <div className="param-item" key={param.key}>
+                  <span className="param-label">{param.label}</span>
+                  <InputNumber className="param-input" value={param.value} />
+                </div>
+              ))}
+            </div>
+
+            <div className="params-group">
+              <div className="group-title">光源</div>
+              {lightParams.map(param => (
+                <div className="param-item" key={param.key}>
+                  <span className="param-label">{param.label}</span>
+                  <InputNumber className="param-input" value={param.value} />
+                </div>
+              ))}
+            </div>
+
+            <div className="params-group">
+              <div className="group-title">模板参数</div>
+              {templateParams.map(param => (
+                <div className="param-item" key={param.key}>
+                  <span className="param-label">{param.label}</span>
+                  <InputNumber className="param-input" value={param.value} />
+                </div>
+              ))}
+              <div className="param-item">
+                <span className="param-label">方法</span>
+                <Select defaultValue="灰度" className="method-select">
+                  <Option value="灰度">灰度</Option>
+                  <Option value="彩色">彩色</Option>
+                </Select>
               </div>
-            ))}
-          </div>
+            </div>
 
-          <div className="params-group">
-            <div className="group-title">光源</div>
-            {lightParams.map(param => (
-              <div className="param-item" key={param.key}>
-                <span className="param-label">{param.label}</span>
-                <InputNumber className="param-input" value={param.value} />
+            <div className="params-group">
+              <div className="group-title">搜索参数</div>
+              {searchParams.map(param => (
+                <div className="param-item" key={param.key}>
+                  <span className="param-label">{param.label}</span>
+                  <InputNumber className="param-input" value={param.value} />
+                </div>
+              ))}
+              <div className="param-item">
+                <span className="param-label">开启损坏检测</span>
+                <Switch defaultChecked />
               </div>
-            ))}
-          </div>
-
-          <div className="params-group">
-            <div className="group-title">模板参数</div>
-            {templateParams.map(param => (
-              <div className="param-item" key={param.key}>
-                <span className="param-label">{param.label}</span>
-                <InputNumber className="param-input" value={param.value} />
+              <div className="param-item">
+                <span className="param-label">开启ROI搜索</span>
+                <Switch defaultChecked />
               </div>
-            ))}
-            <div className="param-item">
-              <span className="param-label">方法</span>
-              <Select defaultValue="灰度" className="method-select">
-                <Option value="灰度">灰度</Option>
-                <Option value="彩色">彩色</Option>
-              </Select>
-            </div>
-          </div>
-
-          <div className="params-group">
-            <div className="group-title">搜索参数</div>
-            {searchParams.map(param => (
-              <div className="param-item" key={param.key}>
-                <span className="param-label">{param.label}</span>
-                <InputNumber className="param-input" value={param.value} />
+              <div className="param-item">
+                <span className="param-label">开启多模板匹配</span>
+                <Switch defaultChecked />
               </div>
-            ))}
-            <div className="param-item">
-              <span className="param-label">开启损坏检测</span>
-              <Switch defaultChecked />
             </div>
-            <div className="param-item">
-              <span className="param-label">开启ROI搜索</span>
-              <Switch defaultChecked />
-            </div>
-            <div className="param-item">
-              <span className="param-label">开启多模板匹配</span>
-              <Switch defaultChecked />
+
+            <div className="params-group">
+              <div className="group-title">PCB位置参数</div>
+              <div className="param-item">
+                <span className="param-label">X</span>
+                <InputNumber className="param-input" value={0} />
+              </div>
+              <div className="param-item">
+                <span className="param-label">Y</span>
+                <InputNumber className="param-input" value={0} />
+              </div>
             </div>
           </div>
 
-          <div className="params-group">
-            <div className="group-title">PCB位置参数</div>
-            <div className="param-item">
-              <span className="param-label">X</span>
-              <InputNumber className="param-input" value={0} />
-            </div>
-            <div className="param-item">
-              <span className="param-label">Y</span>
-              <InputNumber className="param-input" value={0} />
-            </div>
+          <div className="bottom-buttons">
+            <Button icon={<CameraOutlined />}>其他振动板参数</Button>
+            <Button>动态振动参数</Button>
+            <Button>反光过滤参数</Button>
+            <Button>子模板</Button>
           </div>
-        </div>
-
-        <div className="bottom-buttons">
-          <Button icon={<CameraOutlined />}>其他振动板参数</Button>
-          <Button>动态振动参数</Button>
-          <Button>反光过滤参数</Button>
-          <Button>子模板</Button>
         </div>
       </Card>
     </div>
