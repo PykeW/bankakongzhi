@@ -1,0 +1,134 @@
+.vision-config {
+    padding: 8px 16px;
+    background: #2b2b2b;
+  }
+  
+  /* 参数配置区域 */
+  .params-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: #2b2b2b;
+  }
+  
+  .params-group {
+    background: #404040;
+    padding: 0;
+    margin-bottom: 1px;
+  }
+  
+  .group-title {
+    color: #fff;
+    font-size: 13px;
+    padding: 6px 16px;
+    background: #008B8B;
+    border: none;
+    margin: 0;
+  }
+  
+  .param-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px 16px;
+    background: #404040;
+    margin: 0;
+    border-bottom: 1px solid #363636;
+    height: 32px;
+  }
+  
+  .param-label {
+    color: #fff;
+    font-size: 13px;
+    flex: 1;
+  }
+  
+  .param-input {
+    width: 120px !important;
+  }
+  
+  /* 表格样式 */
+  .vision-config .ant-table {
+    background: transparent;
+    margin-bottom: 1px;
+  }
+  
+  .vision-config .ant-table-thead > tr > th {
+    background: #008B8B !important;
+    color: #fff !important;
+    border: none !important;
+    height: 32px;
+    padding: 4px 16px;
+    font-size: 13px;
+  }
+  
+  .vision-config .ant-table-tbody > tr > td {
+    background: #404040 !important;
+    border: none !important;
+    padding: 4px 16px;
+    height: 32px;
+  }
+  
+  .vision-config .ant-table-tbody > tr.selected-row > td {
+    background: #0f3e3e !important;
+  }
+  
+  .vision-config .ant-table-tbody > tr:hover > td {
+    background: #363636 !important;
+  }
+  
+  /* 输入框样式 */
+  .vision-config .ant-input-number {
+    background: #404040;
+    border: none;
+    border-radius: 0;
+  }
+  
+  .vision-config .ant-input-number-input {
+    color: #fff;
+  }
+  
+  /* Switch 样式 */
+  .vision-config .ant-switch {
+    background: #404040;
+  }
+  
+  .vision-config .ant-switch-checked {
+    background: #008B8B;
+  }
+  
+  /* Select 样式 */
+  .camera-select, .method-select {
+    width: 120px !important;
+  }
+  
+  .vision-config .ant-select-selector {
+    background: #404040 !important;
+    border: none !important;
+    border-radius: 0 !important;
+  }
+  
+  .vision-config .ant-select-selection-item {
+    color: #fff !important;
+  }
+  
+  /* 底部按钮 */
+  .bottom-buttons {
+    display: flex;
+    gap: 1px;
+    margin-top: 1px;
+    justify-content: center;
+  }
+  
+  .bottom-buttons .ant-btn {
+    min-width: 120px;
+    height: 32px;
+    background: #404040;
+    border: none;
+    color: #fff;
+    border-radius: 0;
+  }
+  
+  .bottom-buttons .ant-btn:hover {
+    background: #363636;
+  }

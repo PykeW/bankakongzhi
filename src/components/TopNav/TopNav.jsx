@@ -37,7 +37,10 @@ const TopNav = ({ currentView, onViewChange }) => {
           <ThunderboltOutlined className="icon" />
           速度
         </div>
-        <div className="nav-item">
+        <div 
+          className={`nav-item ${currentView === 'vision' ? 'active' : ''}`}
+          onClick={() => onViewChange('vision')}
+        >
           <EyeOutlined className="icon" />
           视觉
         </div>

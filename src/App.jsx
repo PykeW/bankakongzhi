@@ -1,17 +1,17 @@
 import { ConfigProvider, theme } from 'antd';
-import AxisConfig from './components/AxisConfig';
-import SpeedConfig from './components/SpeedConfig';
-import TopNav from './components/TopNav';
+import AxisConfig from './components/AxisConfig/AxisConfig';
+import SpeedConfig from './components/SpeedConfig/SpeedConfig';
+import VisionConfig from './components/VisionConfig/VisionConfig';
+import TopNav from './components/TopNav/TopNav';
+import BottomControls from './components/BottomControls/BottomControls';
 import 'antd/dist/reset.css';
 import { useState, useRef, useEffect } from 'react';
-import BottomControls from './components/BottomControls';
 
 function App() {
   const [currentView, setCurrentView] = useState('axis');
   const [contentOverflow, setContentOverflow] = useState('hidden');
   const contentRef = useRef(null);
 
-  // 监测内容高度并决定是否显示滚动条
   useEffect(() => {
     const checkOverflow = () => {
       if (contentRef.current) {
@@ -51,14 +51,15 @@ function App() {
           style={{ 
             height: 'calc(100vh - 132px)',
             marginTop: '72px',
-            marginBottom: '60px'
+            marginBottom: '60px',
+            overflow: 'hidden'
           }}
         >
-          {currentView === 'axis' ? (
-            <AxisConfig />
-          ) : (
-            <SpeedConfig />
-          )}
+          <div style={{ overflowY: contentOverflow, height: '100%' }}>
+            {currentView === 'axis' && <AxisConfig />}
+            {currentView === 'speed' && <SpeedConfig />}
+            {currentView === 'vision' && <VisionConfig />}
+          </div>
         </div>
         <BottomControls />
       </div>

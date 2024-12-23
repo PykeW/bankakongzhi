@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Card, Table, Checkbox, Button, Space, Slider, InputNumber, Tooltip, Switch } from 'antd';
 import { PlusOutlined, MinusOutlined } from '@ant-design/icons';
 import './AxisConfig.css';
-import TestParams from './TestParams';
+import TestParams from '../TestParams/TestParams';
 
 const AxisConfig = () => {
   const [selectedAxisIndex, setSelectedAxisIndex] = useState(0);
