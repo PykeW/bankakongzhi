@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Card, Table, Input, InputNumber, Select, Switch, Button, Tabs } from 'antd';
-import { PlusOutlined, MinusOutlined, CameraOutlined } from '@ant-design/icons';
+import { PlusOutlined, MinusOutlined, CameraOutlined, AppstoreOutlined, ToolOutlined, PlayCircleOutlined, SyncOutlined, AimOutlined } from '@ant-design/icons';
 import './VisionConfig.css';
 
 const { Option } = Select;
+const { TabPane } = Tabs;
 
 const VisionConfig = () => {
   const [selectedTemplate, setSelectedTemplate] = useState(0);
@@ -12,6 +13,7 @@ const VisionConfig = () => {
     { key: 1, name: '模板2', camera: '取料相机' },
     { key: 2, name: '模板3', camera: '取料相机' },
   ]);
+  const [activeTab, setActiveTab] = useState('template');
 
   const columns = [
     { 
@@ -62,7 +64,19 @@ const VisionConfig = () => {
     { label: '搜索角度', key: 'searchAngle', value: 0 },
     { label: '模板匹配角度', key: 'matchAngle', value: 0 },
     { label: '边缘角点', key: 'edgePoint', value: 0 },
-    { label: '最大距离阈值', key: 'maxDistance', value: 0 }
+    { label: '最大距离阈值', key: 'maxDistance', value: 20000 },
+    { label: '步进搜索精度', key: 'stepPrecision', value: 5 }
+  ];
+
+  const calibrationParams = [
+    { label: '相机定位速度', key: 'camSpeed', value: 0 },
+    { label: '相机定位延时', key: 'camDelay', value: 0 },
+    { label: '相机类型', key: 'camType', value: '取料相机' },
+  ];
+
+  const pointParams = [
+    { label: '点1', x: 0, y: 0 },
+    { label: '点2', x: 0, y: 0 },
   ];
 
   const handleAdd = () => {
@@ -85,104 +99,242 @@ const VisionConfig = () => {
     <div className="vision-config">
       <Card bordered={false}>
         <div className="vision-content">
-          <div className="template-section">
-            <div className="template-actions">
-              <Button type="text" icon={<PlusOutlined />} onClick={handleAdd} />
-              <Button type="text" icon={<MinusOutlined />} onClick={handleDelete} />
-            </div>
-            <Table
-              columns={columns}
-              dataSource={templates}
-              pagination={false}
-              size="small"
-              rowClassName={(record) => record.key === selectedTemplate ? 'selected-row' : ''}
-              onRow={(record) => ({
-                onClick: () => setSelectedTemplate(record.key),
-              })}
-            />
-          </div>
-
-          <div className="params-section">
-            <div className="params-group">
-              <div className="group-title">相机参数</div>
-              {cameraParams.map(param => (
-                <div className="param-item" key={param.key}>
-                  <span className="param-label">{param.label}</span>
-                  <InputNumber className="param-input" value={param.value} />
+          {activeTab === 'template' && (
+            <>
+              <div className="scrollable-content">
+                <div className="template-section">
+                  <div className="template-actions">
+                    <Button type="text" icon={<PlusOutlined />} onClick={handleAdd} />
+                    <Button type="text" icon={<MinusOutlined />} onClick={handleDelete} />
+                  </div>
+                  <Table
+                    columns={columns}
+                    dataSource={templates}
+                    pagination={false}
+                    size="small"
+                    rowClassName={(record) => record.key === selectedTemplate ? 'selected-row' : ''}
+                    onRow={(record) => ({
+                      onClick: () => setSelectedTemplate(record.key),
+                    })}
+                  />
                 </div>
-              ))}
-            </div>
 
-            <div className="params-group">
-              <div className="group-title">光源</div>
-              {lightParams.map(param => (
-                <div className="param-item" key={param.key}>
-                  <span className="param-label">{param.label}</span>
-                  <InputNumber className="param-input" value={param.value} />
+                <div className="params-section">
+                  <div className="params-group">
+                    <div className="group-title">相机参数</div>
+                    {cameraParams.map(param => (
+                      <div className="param-item" key={param.key}>
+                        <span className="param-label">{param.label}</span>
+                        <InputNumber className="param-input" value={param.value} />
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="params-group">
+                    <div className="group-title">光源</div>
+                    {lightParams.map(param => (
+                      <div className="param-item" key={param.key}>
+                        <span className="param-label">{param.label}</span>
+                        <InputNumber className="param-input" value={param.value} />
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="params-group">
+                    <div className="group-title">模板参数</div>
+                    {templateParams.map(param => (
+                      <div className="param-item" key={param.key}>
+                        <span className="param-label">{param.label}</span>
+                        <InputNumber className="param-input" value={param.value} />
+                      </div>
+                    ))}
+                    <div className="param-item">
+                      <span className="param-label">方法</span>
+                      <Select defaultValue="灰度" className="method-select">
+                        <Option value="灰度">灰度</Option>
+                        <Option value="彩色">彩色</Option>
+                      </Select>
+                    </div>
+                  </div>
+
+                  <div className="params-group">
+                    <div className="group-title">搜索参数</div>
+                    {searchParams.map(param => (
+                      <div className="param-item" key={param.key}>
+                        <span className="param-label">{param.label}</span>
+                        <InputNumber className="param-input" value={param.value} />
+                      </div>
+                    ))}
+                    <div className="param-item">
+                      <span className="param-label">开启损坏检测</span>
+                      <Switch defaultChecked />
+                    </div>
+                    <div className="param-item">
+                      <span className="param-label">开启ROI搜索</span>
+                      <Switch defaultChecked />
+                    </div>
+                    <div className="param-item">
+                      <span className="param-label">开启多模板匹配</span>
+                      <Switch defaultChecked />
+                    </div>
+                  </div>
+
+                  <div className="params-group">
+                    <div className="group-title">PCB位置参数</div>
+                    <div className="param-item">
+                      <span className="param-label">X</span>
+                      <InputNumber className="param-input" value={0} />
+                    </div>
+                    <div className="param-item">
+                      <span className="param-label">Y</span>
+                      <InputNumber className="param-input" value={0} />
+                    </div>
+                  </div>
                 </div>
-              ))}
-            </div>
+              </div>
 
-            <div className="params-group">
-              <div className="group-title">模板参数</div>
-              {templateParams.map(param => (
-                <div className="param-item" key={param.key}>
-                  <span className="param-label">{param.label}</span>
-                  <InputNumber className="param-input" value={param.value} />
+              <div className="bottom-buttons">
+                <Button icon={<CameraOutlined />}>其他模板参数</Button>
+                <Button>动态振动参数</Button>
+                <Button>反光过滤参数</Button>
+                <Button>子模板</Button>
+              </div>
+            </>
+          )}
+
+          {activeTab === 'calibration' && (
+            <div className="calibration-content">
+              <div className="params-group">
+                <div className="group-title">相机标定</div>
+                <div className="param-item">
+                  <span className="param-label">相机标定</span>
+                  <InputNumber className="param-input" value={0} />
                 </div>
-              ))}
-              <div className="param-item">
-                <span className="param-label">方法</span>
-                <Select defaultValue="灰度" className="method-select">
-                  <Option value="灰度">灰度</Option>
-                  <Option value="彩色">彩色</Option>
-                </Select>
-              </div>
-            </div>
-
-            <div className="params-group">
-              <div className="group-title">搜索参数</div>
-              {searchParams.map(param => (
-                <div className="param-item" key={param.key}>
-                  <span className="param-label">{param.label}</span>
-                  <InputNumber className="param-input" value={param.value} />
+                <div className="param-item">
+                  <span className="param-label">模板高度</span>
+                  <InputNumber className="param-input" value={0} />
                 </div>
-              ))}
-              <div className="param-item">
-                <span className="param-label">开启损坏检测</span>
-                <Switch defaultChecked />
+                <div className="param-item">
+                  <span className="param-label">待标定相机</span>
+                  <Select defaultValue="取料相机" className="camera-select">
+                    <Option value="取料相机">取料相机</Option>
+                    <Option value="放料相机">放料相机</Option>
+                  </Select>
+                </div>
               </div>
-              <div className="param-item">
-                <span className="param-label">开启ROI搜索</span>
-                <Switch defaultChecked />
+
+              <div className="point-section">
+                <div className="point-table-container">
+                  <div className="point-header">
+                    <div>点位</div>
+                    <div>X</div>
+                    <div>Y</div>
+                  </div>
+                  <div className="point-row">
+                    <div>点1</div>
+                    <InputNumber value={0} />
+                    <InputNumber value={0} />
+                  </div>
+                  <div className="point-row">
+                    <div>点2</div>
+                    <InputNumber value={0} />
+                    <InputNumber value={0} />
+                  </div>
+                </div>
+
+                <div className="point-action-container">
+                  <Button 
+                    className="calibration-button calibration-camera"
+                    icon={<CameraOutlined />}
+                  >
+                    开始标定
+                  </Button>
+                </div>
               </div>
-              <div className="param-item">
-                <span className="param-label">开启多模板匹配</span>
-                <Switch defaultChecked />
+
+              <div className="params-group">
+                <div className="group-title">旋转标定</div>
+                <div className="param-item">
+                  <span className="param-label">最大搜索距离</span>
+                  <InputNumber className="param-input" value={20000} />
+                </div>
+                <div className="param-item">
+                  <span className="param-label">芯片自动搜索模式</span>
+                  <Switch defaultChecked />
+                </div>
+                <div className="param-item">
+                  <span className="param-label">旋转步进角度</span>
+                  <InputNumber className="param-input" value={5} />
+                </div>
+              </div>
+
+              <div className="calibration-steps">
+                <div className="step-item">
+                  <div className="step-title">第一步</div>
+                  <div className="step-content">定位一个芯片，手动进行自动搜索</div>
+                  <div className="step-container step-first">
+                    <Button 
+                      className="calibration-button" 
+                      icon={<PlayCircleOutlined />}
+                    >
+                      开始标定
+                    </Button>
+                  </div>
+                </div>
+
+                <div className="step-item">
+                  <div className="step-title">第二步</div>
+                  <div className="step-content">手动修正</div>
+                  <div className="step-actions">
+                    <Button 
+                      className="calibration-button" 
+                      icon={<SyncOutlined />}
+                    >
+                      开始往复运动
+                    </Button>
+                    <Button 
+                      className="calibration-button" 
+                      icon={<AimOutlined />}
+                    >
+                      修改旋转中心
+                    </Button>
+                  </div>
+                </div>
+
+                <div className="step-item">
+                  <div className="step-title">第三步</div>
+                  <div className="step-content">T轴旋转一周验证标定</div>
+                  <Button 
+                    className="calibration-button" 
+                    icon={<SyncOutlined />}
+                  >
+                    开始标定
+                  </Button>
+                </div>
+              </div>
+
+              <div className="params-group">
+                <div className="group-title">标定结果</div>
+                <div className="result-table">
+                  <div className="result-header">
+                    <div>X</div>
+                    <div>Y</div>
+                  </div>
+                  <div className="result-row">
+                    <div>芯片旋转中心</div>
+                    <InputNumber value={0} />
+                    <InputNumber value={0} />
+                  </div>
+                </div>
               </div>
             </div>
-
-            <div className="params-group">
-              <div className="group-title">PCB位置参数</div>
-              <div className="param-item">
-                <span className="param-label">X</span>
-                <InputNumber className="param-input" value={0} />
-              </div>
-              <div className="param-item">
-                <span className="param-label">Y</span>
-                <InputNumber className="param-input" value={0} />
-              </div>
-            </div>
-          </div>
-
-          <div className="bottom-buttons">
-            <Button icon={<CameraOutlined />}>其他振动板参数</Button>
-            <Button>动态振动参数</Button>
-            <Button>反光过滤参数</Button>
-            <Button>子模板</Button>
-          </div>
+          )}
         </div>
       </Card>
+      <Tabs activeKey={activeTab} onChange={setActiveTab} tabPosition="bottom">
+        <TabPane tab={<span><AppstoreOutlined />模板</span>} key="template" />
+        <TabPane tab={<span><ToolOutlined />标定</span>} key="calibration" />
+      </Tabs>
     </div>
   );
 };
