@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Card, Table, Input, InputNumber, Select, Switch, Button, Tabs } from 'antd';
-import { PlusOutlined, MinusOutlined, CameraOutlined, AppstoreOutlined, ToolOutlined, PlayCircleOutlined, SyncOutlined, AimOutlined } from '@ant-design/icons';
+import { PlusOutlined, MinusOutlined, CameraOutlined, AppstoreOutlined, ToolOutlined, PlayCircleOutlined, SyncOutlined, AimOutlined, EditOutlined, SearchOutlined, FilterOutlined, BlockOutlined } from '@ant-design/icons';
 import './VisionConfig.css';
 
 const { Option } = Select;
@@ -189,15 +189,14 @@ const VisionConfig = () => {
                       <span className="param-label">Y</span>
                       <InputNumber className="param-input" value={0} />
                     </div>
+                    <div className="template-action-buttons">
+                      <Button icon={<EditOutlined />}>其他模板参数</Button>
+                      <Button icon={<SearchOutlined />}>缺陷模板参数</Button>
+                      <Button icon={<FilterOutlined />}>灰度过滤参数</Button>
+                      <Button icon={<BlockOutlined />}>子模板</Button>
+                    </div>
                   </div>
                 </div>
-              </div>
-
-              <div className="bottom-buttons">
-                <Button icon={<CameraOutlined />}>其他模板参数</Button>
-                <Button>动态振动参数</Button>
-                <Button>反光过滤参数</Button>
-                <Button>子模板</Button>
               </div>
             </>
           )}
@@ -224,21 +223,27 @@ const VisionConfig = () => {
               </div>
 
               <div className="point-section">
-                <div className="point-table-container">
-                  <div className="point-header">
-                    <div>点位</div>
-                    <div>X</div>
-                    <div>Y</div>
+                <div className="point-table">
+                  <div className="point-row header">
+                    <div className="label-cell">点位</div>
+                    <div className="value-cells">
+                      <div>X</div>
+                      <div>Y</div>
+                    </div>
                   </div>
                   <div className="point-row">
-                    <div>点1</div>
-                    <InputNumber value={0} />
-                    <InputNumber value={0} />
+                    <div className="label-cell">点1</div>
+                    <div className="value-cells">
+                      <InputNumber value={0} />
+                      <InputNumber value={0} />
+                    </div>
                   </div>
                   <div className="point-row">
-                    <div>点2</div>
-                    <InputNumber value={0} />
-                    <InputNumber value={0} />
+                    <div className="label-cell">点2</div>
+                    <div className="value-cells">
+                      <InputNumber value={0} />
+                      <InputNumber value={0} />
+                    </div>
                   </div>
                 </div>
 
@@ -314,16 +319,20 @@ const VisionConfig = () => {
               </div>
 
               <div className="params-group">
-                <div className="group-title">标定结果</div>
                 <div className="result-table">
-                  <div className="result-header">
-                    <div>X</div>
-                    <div>Y</div>
+                  <div className="result-row header">
+                    <div className="label-cell">标定结果</div>
+                    <div className="value-cells">
+                      <div>X</div>
+                      <div>Y</div>
+                    </div>
                   </div>
                   <div className="result-row">
-                    <div>芯片旋转中心</div>
-                    <InputNumber value={0} />
-                    <InputNumber value={0} />
+                    <div className="label-cell">芯片旋转中心</div>
+                    <div className="value-cells">
+                      <InputNumber value={0} />
+                      <InputNumber value={0} />
+                    </div>
                   </div>
                 </div>
               </div>

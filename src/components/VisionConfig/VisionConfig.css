@@ -123,28 +123,7 @@
   gap: 1px;
   background: #2b2b2b;
   grid-template-columns: repeat(2, 1fr);
-  max-height: calc(80vh - 300px);
-  overflow-y: auto;
-}
-
-/* 添加滚动条样式 */
-.params-section::-webkit-scrollbar {
-  width: 6px;
-}
-
-.params-section::-webkit-scrollbar-thumb {
-  background-color: #00897B;
-  border-radius: 3px;
-}
-
-.params-section::-webkit-scrollbar-track {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-@media screen and (max-width: 1365px) {
-  .params-section {
-    grid-template-columns: 1fr;
-  }
+  margin-bottom: 64px;
 }
 
 .params-group {
@@ -313,10 +292,15 @@
 .bottom-buttons {
   display: flex;
   gap: 6px;
-  margin-top: 12px;
   justify-content: center;
-  position: relative;  /* 添加相对定位 */
-  transform: translateY(80px);  /* 向上移动，可以调整这个值 */
+  position: fixed;
+  bottom: 64px;
+  left: 0;
+  right: 0;
+  background: #2b2b2b;
+  padding: 12px;
+  z-index: 1000;
+  transform: none;
 }
 
 .bottom-buttons .ant-btn {
@@ -337,7 +321,8 @@
 .vision-content {
   flex: 1;
   overflow-y: auto;
-  padding-bottom: 120px;
+  height: calc(100vh - 224px);
+  padding-bottom: 0;
 }
 
 .vision-content::-webkit-scrollbar {
@@ -345,7 +330,7 @@
 }
 
 .vision-content::-webkit-scrollbar-thumb {
-  background-color: #00897B;
+  background-color: #008B8B;
   border-radius: 3px;
 }
 
@@ -434,8 +419,9 @@
 }
 
 .point-table {
-  background: #404040;
-  margin: 1px 0;
+  width: 100%;
+  border-radius: 2px;
+  overflow: hidden;
 }
 
 .point-header,
@@ -501,44 +487,54 @@
   grid-column: 8;
 }
 
+/* 标定结果表格 */
 .result-table {
-  background: #404040;
-  margin: 1px 0;
+  width: 100%;
+  border-radius: 2px;
+  overflow: hidden;
 }
 
-.result-header {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  background: #008B8B !important;
-  color: #fff;
-  padding: 6px 10px;
-}
-
+/* 通用行样式 */
 .result-row {
   display: grid;
-  grid-template-columns: 120px 1fr 1fr;
-  gap: 8px;
-  padding: 6px 10px;
+  grid-template-columns: 200px 1fr;
   align-items: center;
+  height: 32px;
+  padding: 0 16px;
+  color: #fff;
 }
 
-.action-button {
-  margin-top: 8px;
+/* 标题行特殊样式 */
+.result-row.header {
+  background: #008B8B;
+}
+
+/* 数据行样式 */
+.result-row:not(.header) {
+  background: #404040;
+}
+
+/* 标签单元格 */
+.label-cell {
+  font-size: 13px;
+}
+
+/* 值单元格容器 */
+.value-cells {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  text-align: center;
+}
+
+/* 输入框样式 */
+.value-cells .ant-input-number {
   width: 100%;
 }
 
-/* 确保滚动条样式一致 */
-.calibration-content::-webkit-scrollbar {
-  width: 6px;
-}
-
-.calibration-content::-webkit-scrollbar-thumb {
-  background-color: #FF8C00;
-  border-radius: 3px;
-}
-
-.calibration-content::-webkit-scrollbar-track {
-  background-color: rgba(255, 255, 255, 0.1);
+.value-cells .ant-input-number-input {
+  text-align: center;
+  padding: 0;
 }
 
 /* 标定按钮样式 */
@@ -745,25 +741,174 @@
 /* 底部导航栏样式 */
 .ant-tabs-bottom {
   position: fixed;
-  bottom: 0;  /* 改为 0，移除与底部的间距 */
+  bottom: 0;
   left: 0;
   right: 0;
   background: #2b2b2b;
   border-top: 1px solid #404040;
   padding: 4px 16px;
   z-index: 1000;
-  height: 48px; /* 减小高度 */
+  height: 48px;
 }
 
 .ant-tabs-nav {
-  height: 40px !important; /* 强制设置高度 */
+  height: 40px !important;
   min-height: 32px !important;
   margin: 0 !important;
 }
 
-/* Tab 按钮样式调整 */
+/* Tab 按钮样���调整 */
 .ant-tabs-tab {
-  padding: 4px 0 !important; /* 减小内边距 */
+  padding: 4px 0 !important;
   margin: 0 16px !important;
   line-height: 24px !important;
+}
+
+/* 新增模板操作按钮组样式 */
+.template-action-buttons {
+  display: flex;
+  gap: 1px;
+  padding: 8px;
+  background: #404040;
+}
+
+.template-action-buttons .ant-btn {
+  flex: 1;
+  height: 32px;
+  background: #363636;
+  border: none;
+  color: #fff;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 8px;
+  position: relative;
+}
+
+.template-action-buttons .ant-btn:hover {
+  background: #4a4a4a;
+}
+
+.template-action-buttons .ant-btn .anticon {
+  margin-right: 8px;
+  font-size: 14px;
+}
+
+/* 为每个图标单独设置颜色 */
+.template-action-buttons .ant-btn:nth-child(1) .anticon {
+  color: #1890ff;  /* 蓝色 */
+}
+
+.template-action-buttons .ant-btn:nth-child(2) .anticon {
+  color: #ffa940;  /* 橙色 */
+}
+
+.template-action-buttons .ant-btn:nth-child(3) .anticon {
+  color: #73d13d;  /* 绿色 */
+}
+
+.template-action-buttons .ant-btn:nth-child(4) .anticon {
+  color: #ffc47d;  
+}
+
+/* 激活状态样式 */
+.template-action-buttons .ant-btn.active {
+  background: #4a4a4a;
+}
+
+.template-action-buttons .ant-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #00BCD4;  /* 底部蓝色指示条 */
+}
+
+/* 点位表格 */
+.point-table {
+  width: 100%;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+/* 通用行样式 */
+.point-row {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  align-items: center;
+  height: 32px;
+  padding: 0 16px;
+  color: #fff;
+}
+
+/* 标题行特殊样式 */
+.point-row.header {
+  background: #008B8B;
+}
+
+/* 数据行样式 */
+.point-row:not(.header) {
+  background: #404040;
+}
+
+/* 标签单元格 */
+.label-cell {
+  font-size: 13px;
+}
+
+/* 值单元格容器 */
+.value-cells {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  text-align: center;
+}
+
+/* 输入框样式 */
+.value-cells .ant-input-number {
+  width: 100%;
+}
+
+.value-cells .ant-input-number-input {
+  text-align: center;
+  padding: 0;
+}
+
+/* 滚动条整体样式 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  background: transparent;
+}
+
+/* 滚动条轨道 */
+::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 3px;
+}
+
+/* 滚动条滑块 */
+::-webkit-scrollbar-thumb {
+  background: #008B8B;  /* 改为主题色 */
+  border-radius: 3px;
+}
+
+/* 滚动条滑块悬停状态 */
+::-webkit-scrollbar-thumb:hover {
+  background: #00A0A0;  /* 主题色的亮色版本 */
+}
+
+/* 滚动条角落 */
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* 确保内容区域有合适的内边距 */
+.vision-config-container {
+  padding-right: 8px;
+  overflow-y: auto;
+  height: 100%;
 }
