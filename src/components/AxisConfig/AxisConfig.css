@@ -71,6 +71,18 @@
   background-color: #52c41a;
 }
 
+.status-dot.positive-limit {
+  background-color: #52c41a;
+}
+
+.status-dot.negative-limit {
+  background-color: #f5222d;
+}
+
+.status-dot.zero-position {
+  background-color: #52c41a;
+}
+
 .control-buttons {
   display: flex;
   flex-direction: column;
@@ -97,16 +109,19 @@
   height: 36px;
   border: none;
   font-size: 13px;
-  transition: all 0.2s;
+  transition: all 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .control-buttons .ant-btn:hover {
   background: #4a4a4a;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .control-buttons .ant-btn:active {
   background: #303030;
   transform: scale(0.98);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .emergency-stop {
@@ -128,11 +143,13 @@
 
 .emergency-stop:hover {
   background: #ff7875;
+  box-shadow: 0 0 12px rgba(255, 120, 117, 0.5);
 }
 
 .emergency-stop:active {
   background: #f5222d;
   transform: scale(0.98);
+  box-shadow: 0 0 6px rgba(245, 34, 45, 0.3);
 }
 
 .status-group {

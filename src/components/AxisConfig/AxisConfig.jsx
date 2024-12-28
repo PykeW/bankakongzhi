@@ -35,9 +35,9 @@ const AxisConfig = () => {
           <div className="status-item"><div className="status-label">使能</div><Switch /></div>
           <div className="status-item"><div className="status-label">运动</div><div className="status-dot moving" /></div>
           <div className="status-item"><div className="status-label">报警</div><div className="status-dot alarm" /></div>
-          <div className="status-item"><div className="status-label">正限位</div><div className="status-dot" /></div>
-          <div className="status-item"><div className="status-label">负限位</div><div className="status-dot" /></div>
-          <div className="status-item"><div className="status-label">零位</div><div className="status-dot" /></div>
+          <div className="status-item"><div className="status-label">正限位</div><div className="status-dot positive-limit" /></div>
+          <div className="status-item"><div className="status-label">负限位</div><div className="status-dot negative-limit" /></div>
+          <div className="status-item"><div className="status-label">零位</div><div className="status-dot zero-position" /></div>
         </div>
       )
     }
