@@ -11,9 +11,6 @@ const TestParams = ({ testParams, axisName, axisKey }) => {
     >
       <div className="params-group">
         <div className="section-title">{axisName}测试参数</div>
-        <Form.Item label="距离 (毫米)" name={`distance_${axisKey}`}>
-          <InputNumber min={0} max={10000} defaultValue={1000} />
-        </Form.Item>
         <Form.Item label="最大速度 (毫米/秒)" name={`maxSpeed_${axisKey}`}>
           <InputNumber min={0} max={10000} defaultValue={5000} />
         </Form.Item>
@@ -28,6 +25,15 @@ const TestParams = ({ testParams, axisName, axisKey }) => {
         </Form.Item>
         <Form.Item label="定位延时 (毫秒)" name={`positionDelay_${axisKey}`}>
           <InputNumber min={0} max={1000} defaultValue={50} />
+        </Form.Item>
+        <Form.Item label="距离 (毫米)" name={`distance_${axisKey}`}>
+          <InputNumber min={0} max={10000} defaultValue={1000} />
+        </Form.Item>
+        <Form.Item label="相对定长 (毫米)" name={`relativeLength_${axisKey}`}>
+          <InputNumber min={0} max={10000} defaultValue={500} />
+        </Form.Item>
+        <Form.Item label="绝对定长 (毫米)" name={`absoluteLength_${axisKey}`}>
+          <InputNumber min={0} max={10000} defaultValue={1000} />
         </Form.Item>
         <Form.Item label="往返次数" name={`roundTrips_${axisKey}`}>
           <InputNumber min={1} max={100} defaultValue={1} />
