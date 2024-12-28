@@ -8,6 +8,21 @@ const AxisConfig = () => {
   const [selectedAxisIndex, setSelectedAxisIndex] = useState(0);
   const [speed, setSpeed] = useState(5000);
 
+  // 添加默认的测试参数
+  const defaultTestParams = {
+    distance: 1000,
+    maxSpeed: 5000,
+    acceleration: 50000,
+    deceleration: 50000,
+    smoothTime: 250,
+    positionDelay: 50,
+    roundTrips: 1,
+    positiveLimitEnable: true,
+    positiveLimitPosition: 500,
+    negativeLimitEnable: true,
+    negativeLimitPosition: -500
+  };
+
   const columns = [
     { title: '轴名称', dataIndex: 'name', width: 120 },
     { title: '序号', dataIndex: 'index', width: 80 },
@@ -87,13 +102,6 @@ const AxisConfig = () => {
             <button className="emergency-stop">急停</button>
           </div>
 
-          <div className="bottom-section">
-            <div className="camera-view">
-              <img src="camera-feed-url" alt="Camera View" />
-            </div>
-            <TestParams />
-          </div>
-
           <div className="status-bar">
             <div className="status-bar-item">
               <span className="status-bar-label">实时位置:</span>
@@ -109,6 +117,20 @@ const AxisConfig = () => {
               <span className="status-bar-label">目标位置:</span>
               <span className="status-bar-value">0.000</span>
               <span className="status-bar-unit">mm</span>
+            </div>
+          </div>
+
+          <div className="bottom-section">
+            <div className="test-params-container">
+              {axisData.map((axis) => (
+                <div key={axis.key} className="test-param-item">
+                  <TestParams 
+                    testParams={defaultTestParams}
+                    axisName={axis.name}
+                    axisKey={axis.key}
+                  />
+                </div>
+              ))}
             </div>
           </div>
         </div>
